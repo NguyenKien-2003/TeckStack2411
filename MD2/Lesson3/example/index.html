@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let a = [9,-3,10,8,1,2,3,4,5,6];
+        // const x = 7;
+        // //them dau
+        // for(let i = a.length; i>0;i--){
+        //     a[i] =a[i-1]; 
+        // }
+        // a[0] = x;
+        // console.log(a)
+        // //them cuoi
+        // a[a.length] = x;
+        // console.log(a);
+        // //xoa dau
+        // for(let j = 0; j< a.length;j++){
+        //     a[j] = a[j+1];
+        // }
+        // a.length = a.length -1;
+        // console.log(a);
+        // //xoa cuoi
+        // a.length = a.length - 1;
+        // console.log(a);
+        let min = a[0];
+        let max = a[0];
+        for(let i = 0; i<a.length;i++){
+            if(a[i] < min){
+                min = a[i];
+            }
+            if(a[i]> max){
+                max = a[i]
+            }
+        }
+        console.log("min: ", min);
+        console.log("max: ", max);
+        
+    </script>
+</body>
+</html>

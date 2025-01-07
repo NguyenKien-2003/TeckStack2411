@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Form Nhập Thông Tin</h1>
+
+    <div class="form-container">
+        <form id="infoForm">
+            <label for="fullName">Họ tên:</label>
+            <input type="text" id="fullName" name="fullName">
+
+            <label for="birthYear">Năm sinh:</label>
+            <input type="number" id="birthYear" name="birthYear">
+
+            <label for="age">Tuổi:</label>
+            <input type="number" id="age" name="age">
+
+            <label for="gender">Giới tính:</label>
+            <select id="gender" name="gender">
+                <option value="Nam">Nam</option>
+                <option value="Nữ">Nữ</option>
+            </select>
+
+            <label for="phoneNumber">Số điện thoại:</label>
+            <input type="text" id="phoneNumber" name="phoneNumber">
+
+            <button type="button" onclick="submitForm()">Gửi</button>
+        </form>
+    </div>
+
+    <div class="error" id="errorMessage"></div>
+
+    <div class="result-container" id="resultContainer">
+        <h2>Thông Tin Nhập Vào:</h2>
+        <p><strong>Họ tên:</strong> <span id="resultFullName"></span></p>
+        <p><strong>Năm sinh:</strong> <span id="resultBirthYear"></span></p>
+        <p><strong>Tuổi:</strong> <span id="resultAge"></span></p>
+        <p><strong>Giới tính:</strong> <span id="resultGender"></span></p>
+        <p><strong>Số điện thoại:</strong> <span id="resultPhoneNumber"></span></p>
+    </div>
+
+    <script>
+        function submitForm() {
+            const fullName = document.getElementById("fullName").value.trim();
+            const birthYear = document.getElementById("birthYear").value.trim();
+            const age = document.getElementById("age").value.trim();
+            const gender = document.getElementById("gender").value;
+            const phoneNumber = document.getElementById("phoneNumber").value.trim();
+
+            if (!fullName || !birthYear || !age || !gender || !phoneNumber) {
+                document.getElementById("errorMessage").textContent = "Vui lòng nhập đầy đủ thông tin!";
+                document.getElementById("resultContainer").style.display = "none";
+            } else {
+                document.getElementById("errorMessage").textContent = "";
+                document.getElementById("resultContainer").style.display = "block";
+
+                document.getElementById("resultFullName").textContent = fullName;
+                document.getElementById("resultBirthYear").textContent = birthYear;
+                document.getElementById("resultAge").textContent = age;
+                document.getElementById("resultGender").textContent = gender;
+                document.getElementById("resultPhoneNumber").textContent = phoneNumber;
+            }
+        }
+    </script>
+
+</body>
+</html>
