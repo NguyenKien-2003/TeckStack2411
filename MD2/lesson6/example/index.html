@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Async Countdown Timer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 50px;
+    }
+    #timer {
+      font-size: 48px;
+      margin: 20px;
+    }
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+    }
+    input {
+      padding: 10px;
+      font-size: 16px;
+      width: 80px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <label for="minutes">Minutes: </label>
+    <input type="number" id="minutes" placeholder="10" min="1">
+  </div>
+  <div id="timer">10:00</div>
+  <div>
+    <button id="start">Start</button>
+    <button id="pause">Pause</button>
+    <button id="stop">Stop</button>
+    <button id="reset">Reset</button>
+  </div>
+
+  <script>
+    let remainingTime = 10 * 60; // Default 10 minutes
+    let isRunning = false; // To track timer state
+    let pauseRequested = false;
+
+    const timerElement = document.getElementById("timer");
+    const minutesInput = document.getElementById("minutes");
+    const startButton = document.getElementById("start");
+    const pauseButton = document.getElementById("pause");
+    const stopButton = document.getElementById("stop");
+    const resetButton = document.getElementById("reset");
+
+    // Format time in mm:ss
+    function formatTime(seconds) {
+      const minutes = Math.floor(seconds / 60);
+      const secs = seconds % 60;
+      return `${minutes.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
+    }
+
+    // Update the timer display
+    function updateTimerDisplay() {
+      timerElement.textContent = formatTime(remainingTime);
+    }
+
+    // Countdown logic using async/await
+    async function countdown() {
+      while (remainingTime > 0 && !pauseRequested) {
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        if (!pauseRequested) {
+          remainingTime--;
+          updateTimerDisplay();
+        }
+      }
+      if (remainingTime === 0) {
+        alert("Time's up!");
+        isRunning = false;
+      }
+    }
+
+    // Start the countdown
+    async function startTimer() {
+      if (isRunning) return; // Prevent multiple starts
+      isRunning = true;
+      pauseRequested = false;
+      await countdown();
+      isRunning = false;
+    }
+
+    // Pause the countdown
+    function pauseTimer() {
+      pauseRequested = true;
+      isRunning = false;
+    }
+
+    // Stop the countdown and reset to default 10 minutes
+    function stopTimer() {
+      pauseRequested = true;
+      isRunning = false;
+      remainingTime = 10 * 60;
+      updateTimerDisplay();
+    }
+
+    // Reset the timer based on input
+    function resetTimer() {
+      pauseRequested = true;
+      isRunning = false;
+      const inputMinutes = parseInt(minutesInput.value) || 10; // Default to 10 if input is empty
+      remainingTime = inputMinutes * 60;
+      updateTimerDisplay();
+    }
+
+    // Event listeners for buttons
+    startButton.addEventListener("click", startTimer);
+    pauseButton.addEventListener("click", pauseTimer);
+    stopButton.addEventListener("click", stopTimer);
+    resetButton.addEventListener("click", resetTimer);
+
+    // Initialize timer display
+    updateTimerDisplay();
+  </script>
+</body>
+</html>

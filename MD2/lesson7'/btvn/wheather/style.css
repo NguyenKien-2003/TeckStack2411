@@ -1,0 +1,64 @@
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+footer {
+    margin-top: auto; /* Đẩy footer xuống dưới cùng */
+}
+.header {
+    background-color: #f8f9fa;
+    border-bottom: 2px solid #007bff;
+}
+.header p {
+    color: #007bff;
+}
+.btn-link {
+    color: #007bff;
+    font-weight: bold;
+}
+.btn-link:hover {
+    text-decoration: underline;
+}
+.telephone p {
+    color: #343a40;
+    font-weight: bold;
+}
+.container {
+    padding: 20px;
+}
+.weather-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap: 20px;
+}
+.forecast-card {
+
+    background-color: #2980b9;
+    color: white;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.forecast-card h2 {
+    margin-top: 0;
+}
+.forecast-card p {
+    margin-bottom: 0;
+}
+.forecast-card img {
+    max-width: 50px;
+    height: auto;
+    margin-bottom: 10px;
+}
+.forecast-card .time {
+    font-size: 0.8em;
+    margin-top: 10px;
+}
