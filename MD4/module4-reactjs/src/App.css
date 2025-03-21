@@ -1,3 +1,21 @@
+
+
 .bg-opacity{
     opacity: 0.6;
+    
 }
+.home-card img{
+    width: 280px;
+    height: 280px;
+}
+/* .home-card{
+    @apply flex flex-col items-center
+
+}
+.home-card img{
+    @apply h-[280px]
+}
+
+.home-card h1{
+    @apply my-8
+} */

@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from 'react'
-import Header from '../../components/Header'
+import Header from '../../components/Header/Header'
 import Footer from '../../components/Footer'
-import Banner from '../../components/Banner'
-import Introduction from '../../components/Introduction'
-import Instruct from '../../components/Instruct'
+import { Outlet } from 'react-router-dom'
+import ModalBanner from '../../components/ModalBanner'
 
 
 const MainLayout = () => {
+  const [order, setOrder] = useState({date:"", table : 1})
   return (
     <>
+  
     <Header />
-    <Banner />
-    <Introduction />
-    <Instruct />
+    <div>
+      <Outlet context={{order,setOrder}}/>  
+    </div> 
     <Footer />
     </>
 
